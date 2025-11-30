@@ -12,7 +12,7 @@ app.get("/hola", (req, res) => {
 });
 
 app.get("/chao", (req, res) => {
-  res.send("Hola from Node.js server!");
+  res.send("Chao from Node.js server!");
 });
 
 app.listen(PORT, () => {
