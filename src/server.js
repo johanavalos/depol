@@ -19,3 +19,5 @@ if (process.env.NODE_ENV !== "test") {
     console.log(`Server running 6 at http://localhost:${PORT}`)
   );
 }
+
+export default app;

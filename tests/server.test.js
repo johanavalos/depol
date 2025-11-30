@@ -1,10 +1,9 @@
 import request from "supertest";
-import app from "../server.js";
+import app from "../src/server.js";
 
 describe("GET /", () => {
-  it("should return Hello message", async () => {
+  it("should return hello message", async () => {
     const res = await request(app).get("/");
-
     expect(res.statusCode).toBe(200);
     expect(res.text).toBe("Hello from Node.js server!");
   });
