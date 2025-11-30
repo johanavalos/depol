@@ -8,13 +8,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/hola", (req, res) => {
-  res.send("Hola from Node.js server!");
+  res.send("Holas from Node.js server!");
 });
 
 app.get("/chao", (req, res) => {
-  res.send("Chao from Node.js server!");
+  res.send("Chaos from Node.js server!");
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running 3 on http://localhost:${PORT}`);
+  console.log(`Server running 5 on http://localhost:${PORT}`);
 });
