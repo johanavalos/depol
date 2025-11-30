@@ -1,11 +1,10 @@
 {
   "name": "basic-node-server",
   "version": "1.0.0",
-  "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "test": "jest"
+    "start": "node src/server.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "dependencies": {
     "express": "^4.19.2"
@@ -13,8 +12,5 @@
   "devDependencies": {
     "jest": "^29.7.0",
     "supertest": "^6.3.4"
-  },
-  "jest": {
-    "testEnvironment": "node"
   }
 }
