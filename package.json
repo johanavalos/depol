@@ -4,13 +4,15 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "lint": "eslint ."
   },
   "dependencies": {
     "express": "^4.19.2"
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "supertest": "^6.3.4"
+    "supertest": "^6.3.4",
+    "eslint": "^9.0.0"
   }
 }
