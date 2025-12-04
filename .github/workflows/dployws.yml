@@ -1,0 +1,41 @@
+name: Deploy Node.js Lambda
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Start CodeBuild
+        id: codebuild
+        run: |
+          BUILD_ID=$(aws codebuild start-build --project-name MyNodeLambdaBuild --query 'build.id' --output text)
+          echo "build_id=$BUILD_ID" >> $GITHUB_OUTPUT
+
+      - name: Wait for CodeBuild to finish
+        run: |
+          aws codebuild batch-get-builds --ids ${{ steps.codebuild.outputs.build_id }}
+
+      - name: Download artifact from S3
+        run: |
+          aws s3 cp s3://mi-bucket-artifacts/deployment.zip deployment.zip
+
+      - name: Deploy to Lambda
+        run: |
+          aws lambda update-function-code \
+            --function-name MiNodoLambda \
+            --zip-file fileb://deployment.zip \
+            --publish
