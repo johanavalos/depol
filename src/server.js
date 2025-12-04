@@ -13,6 +13,10 @@ app.get("/chao", (req, res) => {
   res.send("Chaos from Node.js server!");
 });
 
+app.get("/btn", (req, res) => {
+  res.send("<button>I'm a button</button>");
+});
+
 if (process.env.NODE_ENV !== "test") {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () =>
